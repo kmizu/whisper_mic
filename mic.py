@@ -11,7 +11,7 @@ import torch
 import numpy as np
 
 @click.command()
-@click.option("--model", default="base", help="Model to use", type=click.Choice(["tiny","base", "small","medium","large"]))
+@click.option("--model", default="large", help="Model to use", type=click.Choice(["tiny","base", "small","medium","large"]))
 @click.option("--english", default=False, help="Whether to use English model",is_flag=True, type=bool)
 @click.option("--verbose", default=False, help="Whether to print verbose output", is_flag=True,type=bool)
 @click.option("--energy", default=300, help="Energy level for mic to detect", type=int)
@@ -66,7 +66,7 @@ def transcribe_forever(audio_queue, result_queue, audio_model, english, verbose,
     while True:
         audio_data = audio_queue.get()
         if english:
-            result = audio_model.transcribe(audio_data,language='english')
+            result = audio_model.transcribe(audio_data,language='japanese')
         else:
             result = audio_model.transcribe(audio_data)
 
